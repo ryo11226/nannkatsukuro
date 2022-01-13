@@ -17,7 +17,7 @@ while True:
     # 音声認識の区切りである「改行+.」がくるまで待つ
     while (res.find('\n.') == -1):
         # Juliusから取得した値を格納していく
-        res += sock.recv(1024)
+        res += sock.recv(1024).decode()
 
     word = ''
     for line in res.split('\n'):
