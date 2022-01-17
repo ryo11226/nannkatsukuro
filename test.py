@@ -30,5 +30,5 @@ while True:
             # 文字列の開始記号以外を格納していく
             if line != '[s]':
                 word = word + line
-                print('🐛 word：' + word)
+                print('word：' + word)
         res = ''
