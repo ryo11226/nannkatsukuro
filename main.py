@@ -5,8 +5,10 @@ import picamera
 import subprocess
 import random
 import RPi.GPIO as GPIO
+import subprocess
 
 # Juliusに接続する準備///////////////////////////////////////////////
+subprocess.run('julius -C ~/lumos/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/lumos/julius/dict/lumos -input mic -module')
 host = 'localhost'
 port = 10500
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
