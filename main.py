@@ -4,7 +4,6 @@ import time
 import picamera
 import subprocess
 import random
-import LED_chikachika
 import RPi.GPIO as GPIO
 
 # Juliusに接続する準備///////////////////////////////////////////////
