@@ -34,6 +34,19 @@ bright = 0  # デューティー比で明るさを決める変数"bright"に0を
 
 # このループ処理は常に回っている
 while True:
+
+    # Stateに合わせてLED点灯させる
+    try:
+        Led.ChangeDutyCycle(bright)  # PWM信号出力(デューティ比は変数"bright")
+        time.sleep(0.05)  # 0.05秒間待つ
+        bright = state*50  # duty比は0~100で、0のとき消灯、100のとき最大照度
+
+    except KeyboardInterrupt:  # Ctrl+Cキーが押された
+        Led.stop()  # LED点灯をストップ
+        GPIO.cleanup()  # GPIOをクリーンアップ
+        sys.exit()  # プログラムを終了
+
+
     # 音声認識の区切りである「改行+.」が来たときのみこのループが回らず、次に移行する///////////////////
     while (res.find('\n.') == -1):
         # 改行があるまでJuliusから取得した値を格納していく
@@ -60,14 +73,3 @@ while True:
                     led_state = 2
         res = ''
     # 音声認識の区切りである「改行+.」が来たときのみこのループが回る/////////////////////
-
-    # Stateに合わせてLED点灯させる
-    try:
-        Led.ChangeDutyCycle(bright)  # PWM信号出力(デューティ比は変数"bright")
-        time.sleep(0.05)  # 0.05秒間待つ
-        bright = state*50  # duty比は0~100で、0のとき消灯、100のとき最大照度
-
-    except KeyboardInterrupt:  # Ctrl+Cキーが押された
-        Led.stop()  # LED点灯をストップ
-        GPIO.cleanup()  # GPIOをクリーンアップ
-        sys.exit()  # プログラムを終了
