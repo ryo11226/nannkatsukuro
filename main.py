@@ -4,10 +4,11 @@ import time
 import picamera
 import subprocess
 import random
-import LED_chikachika
 import RPi.GPIO as GPIO
+import subprocess
 
 # Juliusに接続する準備///////////////////////////////////////////////
+subprocess.run('julius -C ~/lumos/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/lumos/julius/dict/lumos -input mic -module')
 host = 'localhost'
 port = 10500
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,7 +34,7 @@ bright = 0  # デューティー比で明るさを決める変数"bright"に0を
 
 # このループ処理は常に回っている
 while True:
-    # 音声認識の区切りである「改行+.」が来たときのみこのループが回る/////////////////////
+    # 音声認識の区切りである「改行+.」が来たときのみこのループが回らず、次に移行する///////////////////
     while (res.find('\n.') == -1):
         # 改行があるまでJuliusから取得した値を格納していく
         res += sock.recv(1024).decode()
