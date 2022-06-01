@@ -14,6 +14,7 @@ echo てんきは てんきは >> ~/lumos/julius/dict/bot.yomi
 #phone
 iconv -f utf8 -t eucjp ~/lumos/julius/dict/bot.yomi | ~/lumos/julius/julius-4.4.2.1/gramtools/yomi2voca/yomi2voca.pl | iconv -f eucjp -t utf8 > ~/lumos/julius/dict/bot.phone
 
+#grammar
 touch ~/lumos/julius/dict/bot.grammar
 echo S : NS_B BOT NS_E >> ~/lumos/julius/dict/bot.grammar
 echo BOT : DENKI KESHITE >> ~/lumos/julius/dict/bot.grammar
