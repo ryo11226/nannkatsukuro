@@ -7,7 +7,7 @@ import random
 import RPi.GPIO as GPIO
 
 # Juliusの起動と接続準備///////////////////////////////////////////////
-cmd = 'julius -C ~/lumos/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/lumos/julius/dict/bot -input mic -module'
+cmd = 'julius -C ~/lumos/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/lumos/julius/dict/lumos -input mic -module'
 proc = Popen(cmd, shell=True)
 time.sleep(2)
 host = 'localhost'
@@ -55,9 +55,11 @@ while True:
                 word = word + line
                 print('word：' + word)
                 # オフなら消灯、ルーモスなら弱点灯、ルーモスマキシマなら強点灯のステートに更>                
-                if word == "でんき けして":
+                if word == "おふ":
                     led_state = 0
-                elif word == "でんき つけて":
+                elif word == "るうもす":
+                    led_state = 1
+                elif word == "るうもすまきしま":
                     led_state = 2
         res = ''
     # 音声認識の区切りである「改行+.」が来たときのみこのループが回る//////////////////////////////////////
